@@ -24,13 +24,15 @@ module.exports = {
     );
     const reason = interaction.options.getString("reason");
 
-    if (targetUser.username === user) {
+    if (!targetGuildMember) {
+      return interaction.reply("**There's not a such member.**");
+    } else if (targetUser.username === user) {
       return interaction.reply("**You can't kick yourself.**");
     } else if (!targetGuildMember.kickable) {
       return interaction.reply("**You can't kick this member.**");
     }
 
     targetGuildMember.kick(reason);
-    return interaction.reply(`Kicked ${targetUser}`);
+    return interaction.reply(`**Kicked ${targetUser}**`);
   },
 };
