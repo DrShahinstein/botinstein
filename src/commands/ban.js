@@ -19,6 +19,9 @@ module.exports = {
   async execute(interaction) {
     const user = interaction.user.username;
     const targetUser = interaction.options.getUser("target");
+    const targetGuildMember = interaction.guild.members.cache.get(
+      targetUser.id
+    );
     const reason = interaction.options.getString("reason");
 
     if (targetUser.username === user) {
@@ -32,7 +35,9 @@ module.exports = {
         return interaction.reply(
           "**You can't ban this user since it's already banned.**"
         );
-      }
+      } else if (!targetGuildMember.bannable)
+        return interaction.reply("**You can't ban this member.**");
+
       interaction.guild.members.ban(targetUser.id, { reason: reason });
       return interaction.reply(`**Banned ${targetUser}**`);
     });
