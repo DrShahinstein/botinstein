@@ -34,7 +34,7 @@ module.exports = {
         );
       }
       interaction.guild.members.ban(targetUser.id, { reason: reason });
-      return interaction.reply(`Banned ${targetUser}`);
+      return interaction.reply(`**Banned ${targetUser}**`);
     });
   },
 };
