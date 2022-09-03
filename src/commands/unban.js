@@ -30,7 +30,7 @@ module.exports = {
         );
       }
       interaction.guild.members.unban(targetUser.id);
-      return interaction.reply(`Unbanned ${targetUser}`);
+      return interaction.reply(`**Unbanned ${targetUser}**`);
     });
   },
 };
