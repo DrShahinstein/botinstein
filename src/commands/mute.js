@@ -25,6 +25,12 @@ module.exports = {
     if (!targetGuildMember)
       return interaction.reply("**There's not a such member.**");
 
+    if (targetUser.username === interaction.user.username) {
+      return interaction.reply(
+        "**So, you literally ARE an administrator and you want to mute yourself. Wow.**"
+      );
+    }
+
     if (targetGuildMember.roles.cache.some((role) => role.name === "Muted"))
       return interaction.reply("**Already muted.**");
 
