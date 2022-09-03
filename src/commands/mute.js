@@ -11,26 +11,29 @@ module.exports = {
         .setRequired(true)
     )
     .addStringOption((option) =>
-      option
-        .setName("reason")
-        .setDescription("The reason why you mute.")
-        .setRequired(true)
+      option.setName("reason").setDescription("The reason why you mute.")
     ),
   async execute(interaction) {
-    const user = interaction.user.username;
     const targetUser = interaction.options.getUser("target");
+    const reason = interaction.options.getString("reason");
     const targetGuildMember = interaction.guild.members.cache.get(
       targetUser.id
     );
-    const reason = interaction.options.getString("reason");
+    const muteRoleId = process.env.MUTE_ROLE_ID;
+    const muteRole = interaction.guild.roles.cache.get(muteRoleId);
 
-    if (targetUser.username === user) {
-      return interaction.reply("**You can't kick yourself.**");
-    } else if (!targetGuildMember.kickable) {
-      return interaction.reply("**You can't kick this member.**");
+    if (!targetGuildMember)
+      return interaction.reply("**There's not a such member.**");
+
+    if (targetGuildMember.roles.cache.some((role) => role.name === "Muted"))
+      return interaction.reply("**Already muted.**");
+
+    targetGuildMember.roles.add(muteRole);
+    if (reason) {
+      interaction.user.createDM().then((dmChannel) => {
+        dmChannel.send(reason);
+      });
     }
-
-    targetGuildMember.kick(reason);
-    return interaction.reply(`Kicked ${targetUser}`);
+    return interaction.reply(`**Muted ${targetUser}**`);
   },
 };
