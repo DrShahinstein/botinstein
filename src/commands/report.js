@@ -37,7 +37,7 @@ module.exports = {
       });
     }
 
-    const button = new ActionRowBuilder().addComponents(
+    const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId("reportButton")
         .setLabel("OK")
@@ -51,7 +51,7 @@ module.exports = {
       .addFields({ name: "Reason:", value: reason })
       .setTimestamp();
 
-    await reportChannel.send({ embeds: [embed], components: [button] });
+    await reportChannel.send({ embeds: [embed], components: [row] });
 
     return interaction.reply({
       content: `${targetUser} was successfully reported.`,
