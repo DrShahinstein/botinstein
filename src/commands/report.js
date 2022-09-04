@@ -48,7 +48,7 @@ module.exports = {
       .setColor("Red")
       .setTitle("Report")
       .setDescription(`${reporter} reported ${targetUser}`)
-      .addFields({ name: "Reason", value: reason })
+      .addFields({ name: "Reason:", value: reason })
       .setTimestamp();
 
     await reportChannel.send({ embeds: [embed], components: [button] });
