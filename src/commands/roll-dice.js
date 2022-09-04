@@ -8,6 +8,6 @@ module.exports = {
     let rand = Math.random() * 6;
     rand = Math.floor(rand);
     if (rand === 0) rand += 1;
-    return interaction.reply(`🎲 **${rand}** 🎲`);
+    return interaction.reply(`🎲 ||${rand}|| 🎲`);
   },
 };

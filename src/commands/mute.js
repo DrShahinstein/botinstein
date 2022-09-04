@@ -23,16 +23,16 @@ module.exports = {
     const muteRole = interaction.guild.roles.cache.get(muteRoleId);
 
     if (!targetGuildMember)
-      return interaction.reply("**There's not a such member.**");
+      return interaction.reply("There's not a such member.");
 
     if (targetUser.username === interaction.user.username) {
       return interaction.reply(
-        "**So, you literally ARE an administrator and you want to mute yourself. Wow.**"
+        "So, you literally ARE an administrator and you want to mute yourself? Wow, impressive."
       );
     }
 
     if (targetGuildMember.roles.cache.some((role) => role.name === "Muted"))
-      return interaction.reply("**Already muted.**");
+      return interaction.reply("Already muted.");
 
     targetGuildMember.roles.add(muteRole);
     if (reason) {
@@ -40,6 +40,6 @@ module.exports = {
         dmChannel.send(reason);
       });
     }
-    return interaction.reply(`**Muted ${targetUser}**`);
+    return interaction.reply(`Muted ${targetUser}`);
   },
 };

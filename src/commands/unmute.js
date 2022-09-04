@@ -19,15 +19,15 @@ module.exports = {
     const muteRole = interaction.guild.roles.cache.get(muteRoleId);
 
     if (!targetGuildMember)
-      return interaction.reply("**There's not a such member.**");
+      return interaction.reply("There's not a such member.");
 
     if (!targetGuildMember.roles.cache.some((role) => role.name === "Muted"))
-      return interaction.reply("**Already unmuted.**");
+      return interaction.reply("Already unmuted.");
 
     targetGuildMember.roles.remove(muteRole);
     interaction.user.createDM().then((dmChannel) => {
       dmChannel.send(`You are no longer muted in ${interaction.guild.name}`);
     });
-    return interaction.reply(`**Unmuted ${targetUser}**`);
+    return interaction.reply(`Unmuted ${targetUser}`);
   },
 };

@@ -6,7 +6,7 @@ module.exports = {
     .setDescription("Display info about this server."),
   async execute(interaction) {
     return interaction.reply(
-      `**Sunucumuzda ${interaction.guild.memberCount} katılımcı var!**`
+      `Sunucumuzda ${interaction.guild.memberCount} katılımcı var!`
     );
   },
 };

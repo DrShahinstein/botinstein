@@ -16,9 +16,7 @@ module.exports = {
     const targetUser = interaction.options.getUser("target");
 
     if (targetUser.username === user) {
-      return interaction.reply(
-        "**Are you seriously trying to unban yourself ;D?**"
-      );
+      return interaction.reply("Are you seriously trying to unban yourself?");
     }
 
     interaction.guild.bans.fetch().then((banned) => {
@@ -26,11 +24,11 @@ module.exports = {
 
       if (!banList.includes(targetUser.id)) {
         return interaction.reply(
-          "**You can't unban this user since it's not banned.**"
+          "You can't unban this user since it's not banned."
         );
       }
       interaction.guild.members.unban(targetUser.id);
-      return interaction.reply(`**Unbanned ${targetUser}**`);
+      return interaction.reply(`Unbanned ${targetUser}`);
     });
   },
 };

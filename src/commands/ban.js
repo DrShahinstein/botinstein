@@ -25,7 +25,7 @@ module.exports = {
     const reason = interaction.options.getString("reason");
 
     if (targetUser.username === user) {
-      return interaction.reply("**You can't ban yourself.**");
+      return interaction.reply("You can't ban yourself.");
     }
 
     interaction.guild.bans.fetch().then((banned) => {
@@ -33,13 +33,13 @@ module.exports = {
 
       if (banList.includes(targetUser.id)) {
         return interaction.reply(
-          "**You can't ban this user since it's already banned.**"
+          "You can't ban this user since it's already banned."
         );
       } else if (!targetGuildMember.bannable)
-        return interaction.reply("**You can't ban this member.**");
+        return interaction.reply("You can't ban this member.");
 
       interaction.guild.members.ban(targetUser.id, { reason: reason });
-      return interaction.reply(`**Banned ${targetUser}**`);
+      return interaction.reply(`Banned ${targetUser}`);
     });
   },
 };
