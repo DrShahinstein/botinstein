@@ -3,7 +3,9 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("roll-dice")
-    .setDescription("Rolls a dice and returns a number from 1 to 6"),
+    .setNameLocalization("tr", "zar-at")
+    .setDescription("Returns a number from 1 to 6")
+    .setDescriptionLocalization("tr", "1-6 arasında bir sayı döndürür."),
   async execute(interaction) {
     let rand = Math.random() * 6;
     rand = Math.floor(rand);

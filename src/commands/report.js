@@ -11,16 +11,21 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("report")
     .setDescription("Reports a member to the admins.")
+    .setDescriptionLocalization("tr", "Bir üyeyi yöneticilere report eder.")
     .addUserOption((option) => {
       return option
         .setName("member")
+        .setNameLocalization("tr", "üye")
         .setDescription("The member you want to report.")
+        .setDescriptionLocalization("tr", "Reportlamak istediğiniz üye.")
         .setRequired(true);
     })
     .addStringOption((option) =>
       option
         .setName("reason")
+        .setNameLocalization("tr", "sebep")
         .setDescription("The reason why you reported this member.")
+        .setDescriptionLocalization("tr", "Bu üyeyi reportlama sebebiniz.")
         .setRequired(true)
     ),
   async execute(interaction) {
@@ -33,7 +38,7 @@ module.exports = {
 
     if (!isValidMember) {
       return interaction.reply({
-        content: "Not a valid member.",
+        content: "Geçerli bir üye değil.", // Not a valid member.
         ephemeral: true,
       });
     }
@@ -71,7 +76,8 @@ module.exports = {
             });
             reporter.createDM().then((dmChannel) => {
               dmChannel.send(
-                `Your report has been seen by administrators in ${interaction.guild.name}`
+                `\`${reason}\` sebepli reportunuz yöneticiler tarafından görüldü.\n**${interaction.guild.name}**`
+                // Your report for {reason} has been seen by administrators.
               );
             });
           }

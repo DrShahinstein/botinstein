@@ -4,10 +4,13 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("unban")
     .setDescription("Unbans users.")
+    .setDescriptionLocalization("tr", "Kullanıcın yasağını kaldırır.")
     .addUserOption((option) =>
       option
         .setName("target")
+        .setNameLocalization("tr", "hedef")
         .setDescription("The user to be unbanned.")
+        .setDescriptionLocalization("tr", "Yasağı kaldırılacak kullanıcı.")
         .setRequired(true)
     ),
 
@@ -16,7 +19,9 @@ module.exports = {
     const targetUser = interaction.options.getUser("target");
 
     if (targetUser.username === user) {
-      return interaction.reply("Are you seriously trying to unban yourself?");
+      return interaction.reply(
+        "Cidden kendi yasağını kaldırmaya mı çalışıyorsun?" // Are you seriously trying to unban yourself?
+      );
     }
 
     interaction.guild.bans.fetch().then((banned) => {
@@ -24,11 +29,11 @@ module.exports = {
 
       if (!banList.includes(targetUser.id)) {
         return interaction.reply(
-          "You can't unban this user since it's not banned."
+          "Yasaklanmadığı için bu kullanıcının yasağını kaldıramazsınız." // You can't unban this user since it's not banned.
         );
       }
       interaction.guild.members.unban(targetUser.id);
-      return interaction.reply(`Unbanned ${targetUser}`);
+      return interaction.reply(`${targetUser} yasağı kaldırıldı.`); // Unbanned ${targetUser}
     });
   },
 };

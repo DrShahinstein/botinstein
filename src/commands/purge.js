@@ -3,9 +3,15 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("purge")
-    .setDescription("Purge up to 99 messages.")
+    .setNameLocalization("tr", "temizle")
+    .setDescription("Able to purge up to 99 messages.")
+    .setDescriptionLocalization("tr", "99'a kadar mesaj temizleyebilir.")
     .addIntegerOption((option) =>
-      option.setName("amount").setDescription("Amount of messages to purge.")
+      option
+        .setName("amount")
+        .setNameLocalization("tr", "miktar")
+        .setDescription("Amount of messages to purge.")
+        .setDescriptionLocalization("tr", "Temizlenecek mesajların miktarı.")
     ),
   async execute(interaction) {
     let amount = interaction.options.getInteger("amount");
@@ -14,13 +20,14 @@ module.exports = {
     await interaction.channel.bulkDelete(amount, true).catch((error) => {
       console.error(error);
       interaction.reply({
-        content: "There was an error trying to purge messages in this channel!",
+        content:
+          "Bu kanaldaki mesajlar silinmeye çalışılırken bir hata oluştu!", // There was an error trying to purge messages in this channel!
         ephemeral: true,
       });
     });
 
     return interaction.reply({
-      content: `Successfully purged \`${amount}\` messages.`,
+      content: `\`${amount}\` kadar mesaj başarılı bir şekilde temizlendi.`, // Successfully purged \`${amount}\` messages.
       ephemeral: true,
     });
   },

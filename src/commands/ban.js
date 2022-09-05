@@ -4,16 +4,21 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("ban")
     .setDescription("Bans users.")
+    .setDescriptionLocalization("tr", "Kullanıcıları yasaklar.")
     .addUserOption((option) =>
       option
         .setName("target")
+        .setNameLocalization("tr", "hedef")
         .setDescription("The user to be banned.")
+        .setDescriptionLocalization("tr", "Yasaklanacak kullanıcı.")
         .setRequired(true)
     )
     .addStringOption((option) =>
       option
         .setName("reason")
+        .setNameLocalization("tr", "sebep")
         .setDescription("The reason why you ban.")
+        .setDescriptionLocalization("tr", "Yasaklamanızın sebebi.")
         .setRequired(true)
     ),
   async execute(interaction) {
@@ -25,7 +30,7 @@ module.exports = {
     const reason = interaction.options.getString("reason");
 
     if (targetUser.username === user) {
-      return interaction.reply("You can't ban yourself.");
+      return interaction.reply("Kendinizi yasaklayamazsınız."); // You can't ban yourself.
     }
 
     interaction.guild.bans.fetch().then((banned) => {
@@ -33,13 +38,13 @@ module.exports = {
 
       if (banList.includes(targetUser.id)) {
         return interaction.reply(
-          "You can't ban this user since it's already banned."
+          "Zaten yasaklı olduğu için bu kullanıcıyı yasaklayamazsınız." // You can't ban this user since it's already banned.
         );
       } else if (!targetGuildMember.bannable)
-        return interaction.reply("You can't ban this member.");
+        return interaction.reply("Bu üyeyi yasaklayamazsınız."); // You can't ban this member.
 
       interaction.guild.members.ban(targetUser.id, { reason: reason });
-      return interaction.reply(`Banned ${targetUser}`);
+      return interaction.reply(`${targetUser} yasaklandı.`); // Banned ${targetUser}
     });
   },
 };
