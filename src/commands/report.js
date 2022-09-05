@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require("uuid");
 const {
   SlashCommandBuilder,
   ActionRowBuilder,
@@ -37,9 +38,10 @@ module.exports = {
       });
     }
 
+    const uniqueID = uuidv4();
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setCustomId("reportButton")
+        .setCustomId(uniqueID)
         .setLabel("OK")
         .setStyle(ButtonStyle.Success)
     );
@@ -51,7 +53,30 @@ module.exports = {
       .addFields({ name: "Reason:", value: reason })
       .setTimestamp();
 
-    await reportChannel.send({ embeds: [embed], components: [row] });
+    await reportChannel
+      .send({ embeds: [embed], components: [row] })
+      .then((message) => {
+        const oneDay = 1000 * 3600 * 24;
+        const filter = (m) => m.customId === uniqueID;
+        const collector = message.createMessageComponentCollector({
+          filter,
+          time: oneDay,
+        });
+        collector.on("collect", async (i) => {
+          i.deferUpdate();
+          if (i.customId === uniqueID) {
+            row.components[0].setDisabled(true);
+            message.edit({
+              components: [row],
+            });
+            reporter.createDM().then((dmChannel) => {
+              dmChannel.send(
+                `Your report has been seen by administrators in ${interaction.guild.name}`
+              );
+            });
+          }
+        });
+      });
 
     return interaction.reply({
       content: `${targetUser} was successfully reported.`,
