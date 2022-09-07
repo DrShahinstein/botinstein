@@ -26,10 +26,9 @@ module.exports = {
     const userId = interaction.user.id;
     const member = interaction.guild.members.cache.get(userId);
     const memberPermissions = member.permissions.toArray();
-    const roles = interaction.guild.roles;
     const grade = interaction.options.getInteger("grade");
     const branch = interaction.options.getString("branch");
-    const classRole = roles.cache.find(
+    const classRole = interaction.guild.roles.cache.find(
       (role) => role.name === `${grade}${branch}`.trim()
     );
 
@@ -40,8 +39,15 @@ module.exports = {
       });
     } else if (
       memberPermissions.includes("Administrator") ||
-      roles.cache.size === 0
+      member.roles.cache.size === 1
     ) {
+      await member.roles.add(classRole);
+      return interaction.reply({
+        content: `${classRole} sınıfına eklendiniz!`,
+        // You were added to the class ${classRole}
+        ephemeral: true,
+      });
+    } else if (member.roles.cache.size > 1) {
       if (member.roles.cache.some((role) => role.name === classRole.name)) {
         return interaction.reply({
           content: "Zaten bu sınıftasınız.",
@@ -49,12 +55,6 @@ module.exports = {
           ephemeral: true,
         });
       }
-      await member.roles.add(classRole);
-      return interaction.reply({
-        content: `${classRole} sınıfına eklendiniz!`,
-        // You were added to the class ${classRole}
-        ephemeral: true,
-      });
     }
 
     return interaction.reply({
