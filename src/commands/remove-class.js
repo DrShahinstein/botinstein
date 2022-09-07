@@ -60,14 +60,14 @@ module.exports = {
       !member.roles.cache.some((role) => role.name === classRole.name)
     ) {
       return interaction.reply({
-        content: "Zaten bu sınıfta değilsiniz.", // You're not already participating in this class.
+        content: `${member} zaten bu sınıfta değil.`, // ${member} is not already in this class.
         ephemeral: true,
       });
     }
 
     await member.roles.remove(classRole);
     return interaction.reply(
-      `${member} adlı üyenin **${classRole}** rolü kaldırıldı.` // ${member}'s ${classRole} role has been removed.
+      `${member} adlı öğrenci ${classRole} sınıfından alındı.` // ${member} was taken from ${classRole} class.
     );
   },
 };
