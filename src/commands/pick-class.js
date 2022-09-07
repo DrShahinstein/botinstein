@@ -41,13 +41,6 @@ module.exports = {
       memberPermissions.includes("Administrator") ||
       member.roles.cache.size === 1
     ) {
-      await member.roles.add(classRole);
-      return interaction.reply({
-        content: `${classRole} sınıfına eklendiniz!`,
-        // You were added to the class ${classRole}
-        ephemeral: true,
-      });
-    } else if (member.roles.cache.size > 1) {
       if (member.roles.cache.some((role) => role.name === classRole.name)) {
         return interaction.reply({
           content: "Zaten bu sınıftasınız.",
@@ -55,6 +48,12 @@ module.exports = {
           ephemeral: true,
         });
       }
+      await member.roles.add(classRole);
+      return interaction.reply({
+        content: `${classRole} sınıfına eklendiniz!`,
+        // You were added to the class ${classRole}
+        ephemeral: true,
+      });
     }
 
     return interaction.reply({
