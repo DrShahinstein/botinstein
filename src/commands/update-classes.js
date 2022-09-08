@@ -25,7 +25,7 @@ module.exports = {
             allClassesWithName.includes(role.name)
           )
         ) {
-          const currentClass = member.roles.cache.find((role) => isValid(role.name));
+          const currentClass = member.roles.cache.find((role) =>isValid(role.name));
           const nextClass = getNextClass(currentClass.name);
           await member.roles.remove(currentClass);
           await member.roles.add(nextClass);
@@ -33,7 +33,7 @@ module.exports = {
       });
     });
 
-    interaction.guild.channels.get(announcementChannelId).send(
+    interaction.guild.channels.cache.get(announcementChannelId).send(
       "📢 | Merhabalar, <@everyone>. Yeni dönem başlamıştır. Sınıf dereceleri yükseltildi."
       // 📢 | Hello, <@everyone>. The new term has begun. The grade of classes has been upgraded.
     );
