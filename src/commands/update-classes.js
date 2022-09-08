@@ -34,7 +34,7 @@ module.exports = {
     });
 
     interaction.guild.channels.cache.get(announcementChannelId).send(
-      "📢 | Merhabalar, <@everyone>. Yeni dönem başlamıştır. Sınıf dereceleri yükseltildi."
+      "📢 Merhabalar, @everyone. Yeni dönem başlamıştır. Sınıf dereceleri yükseltildi."
       // 📢 | Hello, <@everyone>. The new term has begun. The grade of classes has been upgraded.
     );
   },
