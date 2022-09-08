@@ -85,7 +85,8 @@ module.exports = {
       });
 
     return interaction.reply({
-      content: `${targetUser} was successfully reported.`,
+      content: `${targetUser} başarılı bir şekilde yöneticilere bildirildi.`,
+      // ${targetUser} was successfully reported to the admins.
       ephemeral: true,
     });
   },
