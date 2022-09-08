@@ -38,16 +38,17 @@ module.exports = {
         ephemeral: true,
       });
     } else if (
+      member.roles.cache.some((role) => role.name === classRole.name)
+    ) {
+      return interaction.reply({
+        content: "Zaten bu sınıftasınız.",
+        // You are already participating in this class.
+        ephemeral: true,
+      });
+    } else if (
       memberPermissions.includes("Administrator") ||
       member.roles.cache.size === 1
     ) {
-      if (member.roles.cache.some((role) => role.name === classRole.name)) {
-        return interaction.reply({
-          content: "Zaten bu sınıftasınız.",
-          // You are already participating in this class.
-          ephemeral: true,
-        });
-      }
       await member.roles.add(classRole);
       return interaction.reply({
         content: `${classRole} sınıfına eklendiniz!`,
