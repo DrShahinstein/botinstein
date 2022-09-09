@@ -56,8 +56,6 @@ In the suggestions channel, Botinstein reacts to the suggestions with thumbs-up 
 
 ## Installation
 
-Note that you need to prepare all env variables like token, client id and etc. before you run this project.
-
 ```bash
 $ git clone https://www.github.com/1TaylanOzturk/botinstein.git
 $ cd botinstein/
@@ -82,6 +80,8 @@ To run this project, you will need to add the following environment variables to
 | `ANNOUNCEMENT_CHANNEL_ID` | The ID of the channel used to make announcements                                   |
 | `WELCOME_CHANNEL_ID`      | The ID of the channel used to greet new members.                                   |
 | `SUGGESTIONS_CHANNEL_ID`  | The ID of the channel used to serve public and votable suggestions.                |
+
+---
 
 ## Contributing
 
