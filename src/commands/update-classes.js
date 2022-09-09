@@ -4,8 +4,8 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("update-classes")
     .setNameLocalization("tr", "sınıfları-güncelle")
-    .setDescription("Updates the grade of classes.")
-    .setDescriptionLocalization("tr", "Sınıfların derecesini günceller."),
+    .setDescription("Upgrades the grade of classes.")
+    .setDescriptionLocalization("tr", "Sınıfların derecesini yükseltir."),
   async execute(interaction) {
     const announcementChannelId = process.env.ANNOUNCEMENT_CHANNEL_ID;
     const isValid = (name) => /^\d/.test(name) && name.length <= 3;
