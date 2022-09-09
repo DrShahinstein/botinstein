@@ -1,4 +1,4 @@
-# Project Title
+# Botinstein
 
 This project contains a Discord bot I made with Discord.js for my school's Discord channel. You can also use this for your school's Discord channel.
 
