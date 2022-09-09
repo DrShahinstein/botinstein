@@ -2,6 +2,8 @@
 
 This project contains a Discord bot I made with Discord.js for my school's Discord channel. You can also use this for your school's Discord channel.
 
+---
+
 ## How it works.
 
 I will explain how this bot works on my school's Discord channel since I actually made this bot for my school's Discord channel.
@@ -15,6 +17,8 @@ To cover specific channels for Botinstein, we have `👋-hoş-geldiniz-👋`, `�
 `👋-welcome-👋`, `📢-announcement-📢`, `👍-suggestions-👎` respectively and lastly the `❗reports❗` channel.
 In the welcome channel, Botinstein greets new members. In the announcement channel, Botinstein makes announcements.
 In the suggestions channel, Botinstein reacts to the suggestions with thumbs-up and thumbs-down for voting the suggestion.
+
+---
 
 ## Commands
 
@@ -38,6 +42,8 @@ In the suggestions channel, Botinstein reacts to the suggestions with thumbs-up 
 | `/remove-class`   | Removes a class role from a member you indicate.                                | `True`     |
 | `/update-classes` | Upgrades the grade of classes.                                                  | `True`     |
 
+---
+
 ## Events
 
 | Event               | What it does                                                                                                     |
@@ -45,6 +51,8 @@ In the suggestions channel, Botinstein reacts to the suggestions with thumbs-up 
 | `guildMemberAdd`    | Greets new members in the welcome channel and automatically grants the new member a bot role if it's a bot.      |
 | `guildMemberRemove` | Says goodbye to those who left the server.                                                                       |
 | `messageCreate.js`  | If the interacted message is created in the suggestions channel, automatically reacts with 👍 and 👎 for voting. |
+
+---
 
 ## Installation
 
@@ -55,6 +63,8 @@ $ git clone https://www.github.com/1TaylanOzturk/botinstein.git
 $ cd botinstein/
 $ npm install && npm start
 ```
+
+---
 
 ## Environment Variables
 
@@ -77,9 +87,13 @@ To run this project, you will need to add the following environment variables to
 
 Contributions are always welcome! Don't forget to open an issue for major changes.
 
+---
+
 ## License
 
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
+
+---
 
 ## Authors
 
