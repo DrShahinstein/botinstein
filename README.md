@@ -4,7 +4,7 @@ This project contains a Discord bot I made with Discord.js for my school's Disco
 
 ---
 
-## How it works.
+## How it Works.
 
 I will explain how this bot works on my school's Discord channel since I actually made this bot for my school's Discord channel.
 
