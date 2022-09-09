@@ -13,7 +13,7 @@ module.exports = {
       option
         .setName("grade")
         .setNameLocalization("tr", "sınıf")
-        .setDescription("The grade of class.")
+        .setDescription("The grade of the class.")
         .setDescriptionLocalization("tr", "Sınıf seviyesi.")
         .setRequired(true)
     )
@@ -21,8 +21,8 @@ module.exports = {
       option
         .setName("branch")
         .setNameLocalization("tr", "şube")
-        .setDescription("The branch of class.")
-        .setDescriptionLocalization("tr", "Sınıf şubeni")
+        .setDescription("The branch of the class.")
+        .setDescriptionLocalization("tr", "Sınıf şubesi.")
         .setRequired(true)
     )
     .addUserOption((option) => {
