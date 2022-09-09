@@ -85,7 +85,7 @@ To run this project, you will need to add the following environment variables to
 
 ## Contributing
 
-Contributions are always welcome! Don't forget to open an issue for major changes.
+Contributions are always welcome! But if you want to make some major changes, you'd like to consider opening a new issue. And lastly, please don't forget to leave a star if you liked this project!
 
 ---
 
