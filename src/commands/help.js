@@ -68,11 +68,11 @@ module.exports = {
         .addFields(
           {
             name: "/ping",
-            value: "Pong! ile cevap verir.",
+            value: "\"Pong!\" ile cevap verir.",
           },
           {
             name: "/beep",
-            value: "Beep! ile cevap verir.",
+            value: "\"Boop!\" ile cevap verir.",
           },
           { name: "/members", value: "Bu sunucudaki üye sayısını gösterir." },
           {
