@@ -77,9 +77,10 @@ To run this project, you will need to add the following environment variables to
 | `MUTE_ROLE_ID`            | The ID of the role preventing the member from typing and accessing voice channels. |
 | `GUEST_ROLE_ID`           | The ID of the role representing those who are not in any class but are a guest.    |
 | `REPORT_CHANNEL_ID`       | The ID of the channel used to show admins the reports from participants.           |
-| `ANNOUNCEMENT_CHANNEL_ID` | The ID of the channel used to make announcements                                   |
+| `ANNOUNCEMENT_CHANNEL_ID` | The ID of the channel used to make announcements.                                  |
 | `WELCOME_CHANNEL_ID`      | The ID of the channel used to greet new members.                                   |
 | `SUGGESTIONS_CHANNEL_ID`  | The ID of the channel used to serve public and votable suggestions.                |
+| `CLASSES_CHANNEL_ID`      | The ID of the channel used to allow members to manage their classes.               |
 
 ---
 
