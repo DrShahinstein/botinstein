@@ -28,6 +28,9 @@ module.exports = {
           const currentClass = member.roles.cache.find((role) =>
             isValid(role.name)
           );
+
+          if (!currentClass) return;
+
           await member.roles.remove(currentClass);
 
           if (currentClass.name.startsWith("12")) {
@@ -36,6 +39,9 @@ module.exports = {
             const guestRoleId = process.env.GUEST_ROLE_ID;
             const nextClass = interaction.guild.roles.cache.get(guestRoleId);
             await member.roles.add(nextClass);
+          } else if (currentClass.name.startsWith("10")) {
+            // If the class is 10th grade, this means it should only be removed without a +1 upgrade upon it.
+            // Because, 10th grades are likely to differ by branches when they promote to 11th grade.
           } else {
             const nextClass = getNextClass(currentClass.name);
             await member.roles.add(nextClass);
@@ -44,10 +50,15 @@ module.exports = {
       });
     });
 
-    await interaction.guild.channels.cache.get(announcementChannelId).send(
-      "📢 Merhabalar, @everyone. Yeni dönem başlamıştır. Sınıf dereceleri yükseltildi."
-      // 📢 | Hello, <@everyone>. The new term has begun. The grade of classes has been upgraded.
-    );
+    const classesChannelId = process.env.CLASSES_CHANNEL_ID;
+    const classesChannel =
+      interaction.guild.channels.cache.get(classesChannelId);
+
+    await interaction.guild.channels.cache
+      .get(announcementChannelId)
+      .send(
+        `📢 Merhabalar, @everyone. Yeni dönem başlamıştır. Sınıf dereceleri yükseltildi. 11. sınıfa geçenler ${classesChannel} odasından sınıflarını tekrar seçmelidir.`
+      );
 
     return interaction.reply({
       content: "Sınıf dereceleri başarılı bir şekilde yükseltildi.",
