@@ -4,22 +4,14 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("pick-class")
     .setNameLocalization("tr", "sınıf-seç")
-    .setDescription("Picks you a class role.")
-    .setDescriptionLocalization("tr", "Size bir sınıf rolü seçer.")
+    .setDescription("Gives the role of your class grade")
+    .setDescriptionLocalization("tr", "Sınıf derecenize ait rolü verir")
     .addIntegerOption((option) =>
       option
         .setName("grade")
         .setNameLocalization("tr", "sınıf")
-        .setDescription("Your grade of class.")
-        .setDescriptionLocalization("tr", "Sınıf seviyeniz.")
-        .setRequired(true)
-    )
-    .addStringOption((option) =>
-      option
-        .setName("branch")
-        .setNameLocalization("tr", "şube")
-        .setDescription("Your branch of class.")
-        .setDescriptionLocalization("tr", "Sınıf şubeniz.")
+        .setDescription("Grade")
+        .setDescriptionLocalization("tr", "Sınıf seviyeniz")
         .setRequired(true)
     ),
   async execute(interaction) {
@@ -27,9 +19,8 @@ module.exports = {
     const member = interaction.guild.members.cache.get(userId);
     const memberPermissions = member.permissions.toArray();
     const grade = interaction.options.getInteger("grade");
-    const branch = interaction.options.getString("branch");
     const classRole = interaction.guild.roles.cache.find(
-      (role) => role.name === `${grade}${branch}`.trim()
+      (role) => role.name === `${grade}. sınıf`
     );
 
     if (!classRole) {
